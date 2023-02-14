@@ -18,5 +18,8 @@ interface CourseDao {
     @Query("SELECT * FROM course_table")
     fun getCourses(): Flow<List<Course>>
 
+    @Query("DELETE FROM course_table")
+    fun deleteAllCourses()
+
 
 }

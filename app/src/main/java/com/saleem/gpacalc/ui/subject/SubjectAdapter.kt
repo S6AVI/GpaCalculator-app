@@ -28,6 +28,18 @@ class SubjectAdapter(private val listener: OnItemClickListener): ListAdapter<Cou
 
     inner class SubjectViewHolder(private val binding: ItemSubjectBinding): RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val course = getItem(position)
+                        listener.onItemClick(course)
+                    }
+
+                }
+            }
+        }
 
         fun bind(course: Course) {
             binding.apply {
@@ -41,7 +53,6 @@ class SubjectAdapter(private val listener: OnItemClickListener): ListAdapter<Cou
 
     interface OnItemClickListener {
         fun onItemClick(course: Course)
-
     }
 
     class DiffCallback: DiffUtil.ItemCallback<Course>() {
