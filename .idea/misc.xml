@@ -8,11 +8,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/drawable/ic_check_mark.xml" value="0.1435" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/drawable/ic_delete.xml" value="0.188" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_course.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_subject.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_term.xml" value="0.1" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_course.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_subject.xml" value="0.1" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_term.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_subject.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_term.xml" value="0.1" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_course.xml" value="0.1" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_subject.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_term.xml" value="0.18" />
       </map>
     </option>
   </component>

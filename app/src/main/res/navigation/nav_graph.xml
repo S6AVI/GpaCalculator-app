@@ -3,22 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/subjectFragment">
+    app:startDestination="@id/termFragment">
 
     <fragment
-        android:id="@+id/subjectFragment"
-        android:name="com.saleem.gpacalc.ui.subject.SubjectFragment"
-        android:label="Courses"
-        tools:layout="@layout/fragment_subject">
+        android:id="@+id/courseFragment"
+        android:name="com.saleem.gpacalc.ui.course.CourseFragment"
+        android:label="{label}"
+        tools:layout="@layout/fragment_course">
         <action
-            android:id="@+id/action_subjectFragment_to_addEditSubjectFragment"
-            app:destination="@id/addEditSubjectFragment" />
+            android:id="@+id/action_courseFragment_to_addEditCourseFragment"
+            app:destination="@id/addEditCourseFragment" />
+        <argument
+            android:name="term"
+            app:argType="com.saleem.gpacalc.data.Term" />
+        <argument
+            android:name="label"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/addEditSubjectFragment"
-        android:name="com.saleem.gpacalc.ui.addeditsubject.AddEditSubjectFragment"
+        android:id="@+id/addEditCourseFragment"
+        android:name="com.saleem.gpacalc.ui.addeditcourse.AddEditCourseFragment"
         android:label="{label}"
-        tools:layout="@layout/fragment_add_edit_subject">
+        tools:layout="@layout/fragment_add_edit_course">
         <argument
             android:name="course"
             android:defaultValue="@null"
@@ -27,9 +33,39 @@
         <argument
             android:name="label"
             app:argType="string" />
+        <argument
+            android:name="term"
+            app:argType="com.saleem.gpacalc.data.Term" />
     </fragment>
     <dialog
         android:id="@+id/deleteAllCoursesDialogFragment"
         android:name="com.saleem.gpacalc.ui.deleteallcourses.DeleteAllCoursesDialogFragment"
-        android:label="DeleteAllCoursesDialogFragment" /><action android:id="@+id/action_global_deleteAllCoursesDialogFragment" app:destination="@id/deleteAllCoursesDialogFragment"/>
+        android:label="DeleteAllCoursesDialogFragment" >
+        <argument
+            android:name="termId"
+            app:argType="integer" />
+    </dialog><action android:id="@+id/action_global_deleteAllCoursesDialogFragment" app:destination="@id/deleteAllCoursesDialogFragment"/>
+    <fragment
+        android:id="@+id/termFragment"
+        android:name="com.saleem.gpacalc.ui.term.TermFragment"
+        android:label="Terms"
+        tools:layout="@layout/fragment_term">
+        <action
+            android:id="@+id/action_termFragment_to_courseFragment"
+            app:destination="@id/courseFragment" />
+        <action
+            android:id="@+id/action_termFragment_to_addEditTermFragment"
+            app:destination="@id/addEditTermFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditTermFragment"
+        android:name="com.saleem.gpacalc.ui.addeditterm.AddEditTermFragment"
+        android:label="Add Term"
+        tools:layout="@layout/fragment_add_edit_term" >
+        <argument
+            android:name="term"
+            app:argType="com.saleem.gpacalc.data.Term"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

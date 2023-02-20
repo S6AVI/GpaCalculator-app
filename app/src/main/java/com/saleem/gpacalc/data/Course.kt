@@ -9,13 +9,13 @@ import java.lang.Exception
 @Entity(tableName = "course_table")
 @Parcelize
 data class Course(
-
     val name: String,
     val credit_hours: Int,
     val grade: String,
-
+    val termId: Int,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Parcelable {
+    // transform letter grade into its corresponding points
     val gradeFormatted: Double
         get() =
             when (grade) {
