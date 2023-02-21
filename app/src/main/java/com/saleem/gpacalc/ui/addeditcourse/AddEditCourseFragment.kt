@@ -2,6 +2,7 @@ package com.saleem.gpacalc.ui.addeditcourse
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -21,39 +22,48 @@ import kotlinx.coroutines.flow.collect
 class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
 
     private val viewModel: AddEditCourseViewModel by viewModels()
-
+    private lateinit var binding: FragmentAddEditCourseBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentAddEditCourseBinding.bind(view)
+        binding = FragmentAddEditCourseBinding.bind(view)
+
+
 
         binding.apply {
             etName.setText(viewModel.courseName)
-            etHours.setText(viewModel.courseHours)
-            etGrade.setText(viewModel.courseGrade)
+
+            acTvHours.setText(viewModel.courseHours)
+            acTvGrade.setText(viewModel.courseGrade)
 
             etName.addTextChangedListener {
                 viewModel.courseName = it.toString()
             }
 
-            etGrade.addTextChangedListener {
-                viewModel.courseGrade = it.toString()
-            }
-
-            etHours.addTextChangedListener {
-                viewModel.courseHours = it.toString()
-            }
 
             fabAddEdit.setOnClickListener {
                 viewModel.onSaveClick()
             }
+
+
+            acTvHours.setOnItemClickListener { parent, _, position, _ ->
+                val hours = parent.getItemAtPosition(position)
+                viewModel.courseHours = hours.toString()
+            }
+
+            acTvGrade.setOnItemClickListener { parent, _, position, _ ->
+                val grade = parent.getItemAtPosition(position)
+                viewModel.courseGrade = grade.toString()
+            }
+
+
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.addEditTaskEvent.collect { event ->
                 when (event) {
                     is AddEditCourseViewModel.AddEditCourseEvent.NavigateBackWithResult -> {
-                        binding.etGrade.clearFocus()
+
                         setFragmentResult(
                             "add_edit_request",
                             bundleOf("add_edit_result" to event.result)
@@ -72,5 +82,16 @@ class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val hours = resources.getStringArray(R.array.credit_hours)
+        val hoursAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, hours)
+        binding.acTvHours.setAdapter(hoursAdapter)
+
+        val grades = resources.getStringArray(R.array.grade_letters)
+        val gradesAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, grades)
+        binding.acTvGrade.setAdapter(gradesAdapter)
     }
 }

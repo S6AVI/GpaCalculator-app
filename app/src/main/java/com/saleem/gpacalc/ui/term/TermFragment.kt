@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -29,6 +30,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
     private val viewModel: TermViewModel by viewModels()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -38,7 +40,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
         binding.apply {
             recyclerView.adapter = termAdapter
-            recyclerView.setHasFixedSize(true)
+
 
             fabAdd.setOnClickListener {
                 viewModel.onAddNewTermClick()
@@ -51,7 +53,9 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
         }
 
         viewModel.courses.observe(viewLifecycleOwner) {
-            binding.tvGpa.text = "Your Cumulative GPA is: " + calculateGpa(it).toString()
+            val gpa = calculateGpa(it)
+            binding.tvGpa.isVisible = gpa != 0.0
+            binding.tvGpa.text = "Your Cumulative GPA is: " + gpa.toString()
         }
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
@@ -146,10 +150,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                         )
                         findNavController().navigate(action)
                     }
-                    TermViewModel.TermEvent.NavigateToDeleteAllTermsScreen -> {
-                        //val action = TermFragmentDirections.actionGlobalDeleteAllCoursesDialogFragment()
-                        //findNavController().navigate(action)
-                    }
+
                     is TermViewModel.TermEvent.ShowUndoDeleteTermMessage -> {
                         Snackbar.make(
                             requireView(),
@@ -162,7 +163,8 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
                     }
                     is TermViewModel.TermEvent.NavigateToEditTermScreen -> {
-                        val action = TermFragmentDirections.actionTermFragmentToAddEditTermFragment(event.term)
+                        val action =
+                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(event.term)
                         findNavController().navigate(action)
                     }
                 }.exhaustive
@@ -174,24 +176,11 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
             viewModel.onAddEditResult(result)
         }
 
-        //setHasOptionsMenu(true)
     }
 
     override fun onItemClick(term: Term) {
         viewModel.onTermSelected(term)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_fragment_term, menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_delete_all_terms -> {
-                viewModel.onDeleteAllTermsClick()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }

@@ -2,6 +2,7 @@ package com.saleem.gpacalc.ui.term
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,7 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
         fun bind(term: Term) {
             binding.apply {
                 tvName.text = term.name
+                tvTermGpa.isVisible = term.gpa != 0.0
                 tvTermGpa.text = term.gpa.toString()
             }
         }

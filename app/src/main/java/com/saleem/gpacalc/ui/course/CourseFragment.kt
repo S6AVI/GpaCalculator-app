@@ -7,7 +7,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -38,10 +40,12 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
 
         val courseAdapter = CourseAdapter(this)
 
+
+
         binding.apply {
             recyclerView.apply {
                 adapter = courseAdapter
-                setHasFixedSize(true)
+
             }
 
             fabAdd.setOnClickListener {
@@ -50,10 +54,13 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
 
         }
 
+
+
         // observe changes in the list and send it to the adapter
         viewModel.courses.observe(viewLifecycleOwner) {
             courseAdapter.submitList(it)
             val termGpa = calculateGpa(it)
+            binding.tvGpa.isVisible = termGpa != 0.0
             binding.tvGpa.text = "Your GPA is: " + termGpa.toString()
             viewModel.updateTermGpa(termGpa)
 
@@ -116,7 +123,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
         // swipe-to-delete functionality
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ItemTouchHelper.LEFT
         ) {
             // not needed; hence false
             override fun onMove(

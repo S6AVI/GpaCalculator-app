@@ -48,9 +48,7 @@ class TermViewModel @ViewModelInject constructor(
         termEventChannel.send(TermEvent.NavigateToCoursesScreen(term, term.name))
     }
 
-    fun onDeleteAllTermsClick() = viewModelScope.launch {
-        termEventChannel.send(TermEvent.NavigateToDeleteAllTermsScreen)
-    }
+
 
     fun onTermSwipedLift(term: Term) = viewModelScope.launch {
         val deletedCourses = dao.getDeletedCourses(term.termId)
@@ -75,7 +73,6 @@ class TermViewModel @ViewModelInject constructor(
         data class NavigateToEditTermScreen(val term: Term): TermEvent()
         data class ShowTermSavedConfirmationMessage(val msg: String): TermEvent()
         data class NavigateToCoursesScreen(val term: Term, val label: String): TermEvent()
-        object NavigateToDeleteAllTermsScreen: TermEvent()
         data class ShowUndoDeleteTermMessage(val term: Term, val courses: List<Course>): TermEvent()
     }
 }

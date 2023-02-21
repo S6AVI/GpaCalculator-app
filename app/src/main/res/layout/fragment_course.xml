@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
             tools:text="Your GPA is: 4.00" />
 
         <androidx.recyclerview.widget.RecyclerView

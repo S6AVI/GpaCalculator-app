@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.addeditcourse.AddEditCourseFragment">
 
 
@@ -12,30 +13,60 @@
         android:orientation="vertical"
         android:padding="32dp">
 
-        <EditText
-            android:id="@+id/et_name"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Course name"
-            android:layout_margin="4dp"
-            android:inputType="text" />
+            android:layout_height="match_parent"
+            android:layout_margin="4dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_hours"
-            android:hint="Credit hours"
-            android:layout_margin="4dp"
-            android:inputType="numberDecimal"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course Name"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <EditText
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_grade"
-            android:hint="Grade"
+            android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:inputType="text"/>
+            android:hint="Credit Hours">
+
+            <AutoCompleteTextView
+                android:id="@+id/ac_tv_hours"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="3" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:hint="Grade Letter">
+
+            <AutoCompleteTextView
+                android:id="@+id/ac_tv_grade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="A" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>

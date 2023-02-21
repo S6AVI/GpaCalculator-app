@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    app:cardCornerRadius="4dp"
+    app:strokeColor="@color/grey"
+    app:strokeWidth="1dp"
+    android:layout_margin="2dp">
+
+<RelativeLayout
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    android:layout_margin="8dp">
+
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
         android:textColor="@color/black"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/divider"
-        tools:text="Fall 22-23" />
+        android:textSize="24sp"
 
+        android:layout_alignParentStart="true"
+        tools:text="Fall 22-23" />
 
     <TextView
         android:id="@+id/tv_term_gpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
+        android:gravity="center|bottom"
         android:maxLines="1"
+        android:layout_alignBaseline="@id/tv_name"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18sp"
         tools:text="4.00" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

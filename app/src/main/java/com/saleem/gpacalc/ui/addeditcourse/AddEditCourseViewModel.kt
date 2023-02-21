@@ -33,12 +33,12 @@ class AddEditCourseViewModel @ViewModelInject constructor(
             state.set("courseName", value)
         }
 
-    var courseHours = state.get<String>("courseHours") ?: course?.credit_hours?.toString() ?: ""
+    var courseHours = state.get<String>("courseHours") ?: course?.credit_hours?.toString() ?: "3"
         set(value) {
             field = value
             state.set("courseHours", value)
         }
-    var courseGrade = state.get<String>("courseGrade") ?: course?.grade ?: ""
+    var courseGrade = state.get<String>("courseGrade") ?: course?.grade ?: "A"
         set(value) {
             field = value
             state.set("courseGrade", value)
@@ -48,15 +48,11 @@ class AddEditCourseViewModel @ViewModelInject constructor(
     val addEditTaskEvent = addEditCourseEventChannel.receiveAsFlow()
 
     fun onSaveClick() {
-        if (courseName.isBlank() || courseGrade.isBlank() || courseHours.isBlank()) {
+        if (courseName.isBlank()) {
             showInvalidInputMessage("Missing fields")
             return
         }
 
-        if (!possibleGrades.contains(courseGrade) || courseHours.toInt() < 0 || courseHours.toInt() > 8) {
-            showInvalidInputMessage("Invalid inputs")
-            return
-        }
 
         if (course != null) {
             val updatedCourse = course.copy(
