@@ -38,7 +38,6 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
         binding.apply {
             recyclerView.adapter = termAdapter
-            recyclerView.setHasFixedSize(true)
 
             fabAdd.setOnClickListener {
                 viewModel.onAddNewTermClick()

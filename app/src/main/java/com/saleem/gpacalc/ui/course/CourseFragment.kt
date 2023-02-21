@@ -41,7 +41,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
         binding.apply {
             recyclerView.apply {
                 adapter = courseAdapter
-                setHasFixedSize(true)
+
             }
 
             fabAdd.setOnClickListener {
