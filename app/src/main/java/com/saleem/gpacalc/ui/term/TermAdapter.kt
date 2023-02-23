@@ -30,7 +30,7 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
         init {
             binding.apply {
                 root.setOnClickListener {
-                    val position = adapterPosition
+                    val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         val term = getItem(position)
                         listener.onItemClick(term)

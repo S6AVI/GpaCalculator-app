@@ -23,7 +23,7 @@
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Course Name"
+                android:hint="@string/course_name"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:hint="Credit Hours">
+            android:hint="@string/credit_hours">
 
             <AutoCompleteTextView
                 android:id="@+id/ac_tv_hours"
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:hint="Grade Letter">
+            android:hint="@string/grade_letter">
 
             <AutoCompleteTextView
                 android:id="@+id/ac_tv_grade"

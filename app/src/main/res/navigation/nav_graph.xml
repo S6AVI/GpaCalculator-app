@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_course">
         <action
             android:id="@+id/action_courseFragment_to_addEditCourseFragment"
-            app:destination="@id/addEditCourseFragment" />
+            app:destination="@id/addEditCourseFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
         <argument
             android:name="term"
             app:argType="com.saleem.gpacalc.data.Term" />
@@ -48,24 +52,58 @@
     <fragment
         android:id="@+id/termFragment"
         android:name="com.saleem.gpacalc.ui.term.TermFragment"
-        android:label="Terms"
+        android:label="@string/terms"
         tools:layout="@layout/fragment_term">
         <action
             android:id="@+id/action_termFragment_to_courseFragment"
-            app:destination="@id/courseFragment" />
+            app:destination="@id/courseFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_termFragment_to_addEditTermFragment"
-            app:destination="@id/addEditTermFragment" />
+            app:destination="@id/addEditTermFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_termFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/enter_anim_vertical"
+            app:exitAnim="@anim/exit_anim_vertical"
+            app:popEnterAnim="@anim/pop_enter_anim_vertical"
+            app:popExitAnim="@anim/pop_exit_anim_vertical" />
+        <action
+            android:id="@+id/action_termFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/addEditTermFragment"
         android:name="com.saleem.gpacalc.ui.addeditterm.AddEditTermFragment"
-        android:label="Add Term"
-        tools:layout="@layout/fragment_add_edit_term" >
+        android:label="{label}"
+        tools:layout="@layout/fragment_add_edit_term">
         <argument
             android:name="term"
+            android:defaultValue="@null"
             app:argType="com.saleem.gpacalc.data.Term"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
+        <argument
+            android:name="label"
+            app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.saleem.gpacalc.ui.about.AboutFragment"
+        android:label="@string/about" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.saleem.gpacalc.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/settings_fragment" />
 </navigation>

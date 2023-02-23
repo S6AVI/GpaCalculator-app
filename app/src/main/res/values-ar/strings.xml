@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_course">أضف مادة</string>
+    <string name="edit_course">تعديل المادة</string>
+    <string name="course_deleted">حُذِفت المادة</string>
+    <string name="undo">تراجع</string>
+    <string name="delete">حذف</string>
+    <string name="confirm_delete">تأكيد الحذف</string>
+    <string name="delete_question">هل تود حقًا حذف كل مواد هذا الفصل؟</string>
+    <string name="cancel">إلغاء</string>
+    <string name="yes">نعم</string>
+    <string name="delete_message">حّذِف الفصل الدراسي ومواده</string>
+    <string name="edit">تعديل</string>
+    <string name="settings">الإعدادات</string>
+    <string name="about">عن التطبيق</string>
+    <string name="about_text">هذا التطبيق يتيح لك إمكانية إضافة فصولك الدراسية وموادك، وحساب معدل كل فصل على حدة، والمعدل التراكمي.
+        \n\n
+        من تطوير وتصميم سليم آل مسعود</string>
+    <string name="gpa_system">نظام المعدل</string>
+    <string name="out_of_four">من أربعة</string>
+    <string name="out_of_five">من خمسة</string>
+    <string name="highest_grade">أعلى علامة ممكنة</string>
+    <string name="terms">الفصول الدراسية</string>
+    <string name="term_name">اسم الفصل الدراسي</string>
+    <string name="course_name">اسم المادة</string>
+    <string name="credit_hours">الساعات الدراسية</string>
+    <string name="grade_letter">العلامة</string>
+    <string name="contact">للتواصل:</string>
+    <string name="app_version">رقم الإصدار</string>
+    <string name="cumulative_gpa">معدلك التراكمي: %.2f</string>
+    <string name="term_gpa">معدلك الفصلي: %.2f</string>
+    <string name="add_term">أضف فصلًا دراسيًا</string>
+    <string name="term_gpa_details">معدل الفصل الدراسي: %.2f</string>
+    <string name="edit_term">تعديل اسم الفصل الدراسي</string>
+    <string name="delete_all_courses">حذف كل المواد</string>
+    <string name="term_added">أُضيف الفصل الدراسي</string>
+    <string name="term_edited">عُدل اسم الفصل الدراسي</string>
+    <string name="course_added">أُضيفت المادة</string>
+    <string name="course_edited">عُدلت المادة</string>
+    <string name="name_required">الاسم مطلوب</string>
+    <string name="saleem">سليم آل مسعود</string>
+</resources>

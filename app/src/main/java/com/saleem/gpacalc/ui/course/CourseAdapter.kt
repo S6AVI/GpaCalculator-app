@@ -32,7 +32,7 @@ class CourseAdapter(private val listener: OnItemClickListener): ListAdapter<Cour
         init {
             binding.apply {
                 root.setOnClickListener {
-                    val position = adapterPosition
+                    val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         val course = getItem(position)
                         listener.onItemClick(course)

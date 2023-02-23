@@ -5,10 +5,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.saleem.gpacalc.R
 import com.saleem.gpacalc.data.CourseDao
 import com.saleem.gpacalc.data.Term
 import com.saleem.gpacalc.ui.ADD_RESULT_OK
 import com.saleem.gpacalc.ui.EDIT_RESULT_OK
+import com.saleem.gpacalc.util.UiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -32,7 +34,9 @@ class AddEditTermViewModel @ViewModelInject constructor(
 
     fun onSaveClick() {
         if (termName.isBlank()) {
-            showInvalidInputMessage("Name is required")
+            showInvalidInputMessage(UiText.StringResource(
+                R.string.name_required
+            ))
             return
         }
         if (term != null) {
@@ -57,13 +61,13 @@ class AddEditTermViewModel @ViewModelInject constructor(
         addEditTermChannel.send(AddEditTermEvent.NavigateBackWithResult(ADD_RESULT_OK))
     }
 
-    private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
-        addEditTermChannel.send(AddEditTermEvent.ShowInvalidInputMessage(text))
+    private fun showInvalidInputMessage(uiText: UiText) = viewModelScope.launch {
+        addEditTermChannel.send(AddEditTermEvent.ShowInvalidInputMessage(uiText))
     }
 
     sealed class AddEditTermEvent {
         data class NavigateBackWithResult(val result: Int) : AddEditTermEvent()
-        data class ShowInvalidInputMessage(val msg: String) : AddEditTermEvent()
+        data class ShowInvalidInputMessage(val uiText: UiText) : AddEditTermEvent()
     }
 
 

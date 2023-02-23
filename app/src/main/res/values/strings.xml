@@ -1,5 +1,48 @@
 <resources>
-    <string name="app_name">GPA Calculator</string>
+    <string name="app_name" translatable="false">GPA Calculator</string>
+    <string name="add_course">Add Course</string>
+    <string name="edit_course">Edit Course</string>
+    <string name="course_deleted">Course Deleted</string>
+    <string name="undo">UNDO</string>
+    <string name="delete">Delete</string>
+    <string name="confirm_delete">Confirm Deletion</string>
+    <string name="delete_question">Do you want to delete all courses?</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="edit">Edit</string>
+    <string name="delete_message">Term Deleted and All of its Courses</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="about_text">You can add your terms and courses\nand the GPA will be calculated for each term and accumulated in the main page.\n\nDeveloped by Saleem Masoud.</string>
+    <string name="gpa_system">GPA system</string>
+    <string name="out_of_four">Out of 4</string>
+    <string name="out_of_five">Out of 5</string>
+    <string name="highest_grade">Highest Possible Grade</string>
+    <string name="Aplus" translatable="false">A+</string>
+    <string name="A_grade" translatable="false">A</string>
+    <string name="terms">Terms</string>
+    <string name="term_name">Term Name</string>
+    <string name="course_name">Course Name</string>
+    <string name="credit_hours">Credit Hours</string>
+    <string name="grade_letter">Grade Letter</string>
+    <string name="contact">Contact Me Via:</string>
+    <string name="app_version">App Version</string>
+    <string name="saleem">Saleem Masoud</string>
+    <string name="twitter_name" translatable="false">S6AVII</string>
+    <string name="github_name" translatable="false">S6AVII</string>
+    <string name="linkedin_page" translatable="false">https://www.linkedin.com/in/saleemasoud/</string>
+    <string name="version" translatable="false">2.1.2</string>
+    <string name="cumulative_gpa">Your Cumulative GPA is: %.2f</string>
+    <string name="term_gpa">Your GPA is: %.2f</string>
+    <string name="add_term">Add Term</string>
+    <string name="term_gpa_details">Term GPA: %.2f</string>
+    <string name="edit_term">Edit Term</string>
+    <string name="delete_all_courses">Delete All courses</string>
+    <string name="term_edited">Term Edited</string>
+    <string name="term_added">Term Added</string>
+    <string name="course_added">Course Added</string>
+    <string name="course_edited">Course Edited</string>
+    <string name="name_required">Name is required</string>
 
     <string-array name="credit_hours">
         <item>1</item>
@@ -21,4 +64,5 @@
         <item>D</item>
         <item>F</item>
     </string-array>
+
 </resources>

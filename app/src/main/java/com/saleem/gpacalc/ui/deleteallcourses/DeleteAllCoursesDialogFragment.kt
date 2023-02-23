@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.saleem.gpacalc.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,10 +15,10 @@ class DeleteAllCoursesDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         AlertDialog.Builder(requireContext())
-            .setTitle("Confirm Deletion")
-            .setMessage("Do you want to delete all courses?")
-            .setNegativeButton("Cancel", null)
-            .setPositiveButton("Yes") { _, _ ->
+            .setTitle(getString(R.string.confirm_delete))
+            .setMessage(getString(R.string.delete_question))
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 viewModel.onConfirmClick()
             }.create()
 

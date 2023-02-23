@@ -61,7 +61,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
             courseAdapter.submitList(it)
             val termGpa = calculateGpa(it)
             binding.tvGpa.isVisible = termGpa != 0.0
-            binding.tvGpa.text = "Your GPA is: " + termGpa.toString()
+            binding.tvGpa.text = getString(R.string.term_gpa, termGpa)
             viewModel.updateTermGpa(termGpa)
 
         }
@@ -73,7 +73,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
                     is CourseViewModel.CourseEvent.NavigateToAddCourseScreen -> {
                         val action =
                             CourseFragmentDirections.actionCourseFragmentToAddEditCourseFragment(
-                                label = "Add Course",
+                                label = getString(R.string.add_course),
                                 term = event.term
                             )
                         findNavController().navigate(action)
@@ -82,7 +82,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
                         val action =
                             CourseFragmentDirections.actionCourseFragmentToAddEditCourseFragment(
                                 course = event.course,
-                                label = "Edit Course",
+                                label = getString(R.string.edit_course),
                                 term = event.term
                             )
                         findNavController().navigate(action)
@@ -90,16 +90,16 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
                     is CourseViewModel.CourseEvent.ShowCourseSavedConfirmationMessage -> {
                         Snackbar.make(
                             requireView(),
-                            event.msg,
+                            event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
                     is CourseViewModel.CourseEvent.ShowUndoDeleteCourseMessage -> {
                         Snackbar.make(
                             requireView(),
-                            "Course Deleted",
+                            getString(R.string.course_deleted),
                             Snackbar.LENGTH_LONG
-                        ).setAction("UNDO") {
+                        ).setAction(getString(R.string.undo)) {
                             viewModel.onUndoDeleteCourse(event.course)
                         }.show()
                     }
@@ -176,6 +176,7 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
                         )
                     )
                     .addActionIcon(R.drawable.ic_delete)
+                    .addSwipeLeftLabel(getString(R.string.delete))
                     .create()
                     .decorate()
             }

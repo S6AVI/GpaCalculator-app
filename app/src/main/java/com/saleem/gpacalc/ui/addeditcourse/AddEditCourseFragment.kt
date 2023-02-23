@@ -15,6 +15,7 @@ import com.saleem.gpacalc.R
 import com.saleem.gpacalc.databinding.FragmentAddEditCourseBinding
 
 import com.saleem.gpacalc.util.exhaustive
+import com.saleem.gpacalc.util.possibleGrades
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -73,7 +74,7 @@ class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
                     is AddEditCourseViewModel.AddEditCourseEvent.ShowInvalidInputMessage -> {
                         Snackbar.make(
                             requireView(),
-                            event.msg,
+                            event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
@@ -90,8 +91,8 @@ class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
         val hoursAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, hours)
         binding.acTvHours.setAdapter(hoursAdapter)
 
-        val grades = resources.getStringArray(R.array.grade_letters)
-        val gradesAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, grades)
+        //val grades = resources.getStringArray(R.array.grade_letters)
+        val gradesAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, possibleGrades)
         binding.acTvGrade.setAdapter(gradesAdapter)
     }
 }

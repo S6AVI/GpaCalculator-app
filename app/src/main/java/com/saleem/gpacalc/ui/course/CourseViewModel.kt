@@ -3,11 +3,13 @@ package com.saleem.gpacalc.ui.course
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.saleem.gpacalc.R
 import com.saleem.gpacalc.data.Course
 import com.saleem.gpacalc.data.CourseDao
 import com.saleem.gpacalc.data.Term
 import com.saleem.gpacalc.ui.ADD_RESULT_OK
 import com.saleem.gpacalc.ui.EDIT_RESULT_OK
+import com.saleem.gpacalc.util.UiText
 import com.saleem.gpacalc.util.calculateGpa
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -39,14 +41,18 @@ class CourseViewModel @ViewModelInject constructor(
 
     fun onAddEditResult(result: Int) {
         when (result) {
-            ADD_RESULT_OK -> showCourseSavedConfirmationMessage("Course Added")
-            EDIT_RESULT_OK -> showCourseSavedConfirmationMessage("Course Edited")
+            ADD_RESULT_OK -> showCourseSavedConfirmationMessage(UiText.StringResource(
+                R.string.course_added
+            ))
+            EDIT_RESULT_OK -> showCourseSavedConfirmationMessage(UiText.StringResource(
+                R.string.course_edited
+            ))
         }
 
     }
 
-    private fun showCourseSavedConfirmationMessage(text: String) = viewModelScope.launch {
-        courseEventChannel.send(CourseEvent.ShowCourseSavedConfirmationMessage(text))
+    private fun showCourseSavedConfirmationMessage(uiText: UiText) = viewModelScope.launch {
+        courseEventChannel.send(CourseEvent.ShowCourseSavedConfirmationMessage(uiText))
     }
 
     fun onCourseSwiped(course: Course) = viewModelScope.launch {
@@ -73,7 +79,7 @@ class CourseViewModel @ViewModelInject constructor(
     sealed class CourseEvent {
         data class NavigateToAddCourseScreen(val term: Term) : CourseEvent()
         data class NavigateToEditCourseScreen(val course: Course, val term: Term) : CourseEvent()
-        data class ShowCourseSavedConfirmationMessage(val msg: String) : CourseEvent()
+        data class ShowCourseSavedConfirmationMessage(val uiText: UiText) : CourseEvent()
         data class ShowUndoDeleteCourseMessage(val course: Course) : CourseEvent()
         data class NavigateToDeleteAllCoursesScreen(val id: Int) : CourseEvent()
     }

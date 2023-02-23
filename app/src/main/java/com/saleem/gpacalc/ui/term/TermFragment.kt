@@ -55,7 +55,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
         viewModel.courses.observe(viewLifecycleOwner) {
             val gpa = calculateGpa(it)
             binding.tvGpa.isVisible = gpa != 0.0
-            binding.tvGpa.text = "Your Cumulative GPA is: " + gpa.toString()
+            binding.tvGpa.text = getString(R.string.cumulative_gpa, gpa)
         }
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
@@ -112,7 +112,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                         )
                     )
                     .addSwipeLeftActionIcon(R.drawable.ic_delete)
-
+                    .addSwipeLeftLabel(getString(R.string.delete))
                     .addSwipeRightBackgroundColor(
                         ContextCompat.getColor(
                             requireContext(),
@@ -120,7 +120,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                         )
                     )
                     .addSwipeRightActionIcon(R.drawable.ic_edit)
-
+                    .addSwipeRightLabel(getString(R.string.edit))
                     .create()
                     .decorate()
 
@@ -133,13 +133,13 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
                     TermViewModel.TermEvent.NavigateToAddTermScreen -> {
                         val action =
-                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment()
+                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(label = getString(R.string.add_term))
                         findNavController().navigate(action)
                     }
                     is TermViewModel.TermEvent.ShowTermSavedConfirmationMessage -> {
                         Snackbar.make(
                             requireView(),
-                            event.msg,
+                            event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
@@ -154,9 +154,9 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                     is TermViewModel.TermEvent.ShowUndoDeleteTermMessage -> {
                         Snackbar.make(
                             requireView(),
-                            "Term Deleted and All of its Courses",
+                            getString(R.string.delete_message),
                             Snackbar.LENGTH_LONG
-                        ).setAction("UNDO") {
+                        ).setAction(getString(R.string.undo)) {
                             viewModel.onUndoDeleteTerm(event.term, event.courses)
                         }
                             .show()
@@ -164,7 +164,8 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                     }
                     is TermViewModel.TermEvent.NavigateToEditTermScreen -> {
                         val action =
-                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(event.term)
+                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(event.term, label = getString(
+                                                            R.string.edit_term))
                         findNavController().navigate(action)
                     }
                 }.exhaustive
@@ -174,6 +175,27 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
         setFragmentResultListener("add_edit_term_request") { _, bundle ->
             val result = bundle.getInt("add_edit_term_result")
             viewModel.onAddEditResult(result)
+        }
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_fragment_term, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                val action = TermFragmentDirections.actionTermFragmentToSettingsFragment()
+                findNavController().navigate(action)
+                true
+            }
+            R.id.action_about -> {
+                val action = TermFragmentDirections.actionTermFragmentToAboutFragment()
+                findNavController().navigate(action)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
 
     }

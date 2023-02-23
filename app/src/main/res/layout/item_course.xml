@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     app:cardCornerRadius="4dp"
     app:strokeColor="@color/grey"
-    app:strokeWidth="1dp"
-    android:layout_margin="2dp"
-    >
+    app:strokeWidth="1dp">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="4dp"
-    android:layout_margin="8dp">
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        tools:text="M269" />
-
-    <TextView
-        android:id="@+id/tv_credit_hours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_toStartOf="@id/tv_term_gpa"
-        android:layout_toEndOf="@+id/tv_name"
-        android:ellipsize="end"
-        android:gravity="center|bottom"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        tools:text="8" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_term_gpa"
-        tools:text="A"
-        android:textSize="16sp"
-        android:maxLines="1"
-        android:ellipsize="end"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:textColor="@color/black"
-        android:layout_alignParentEnd="true"/>
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="M269" />
+
+        <TextView
+            android:id="@+id/tv_credit_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_name"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/tv_term_gpa"
+            android:layout_toEndOf="@+id/tv_name"
+            android:ellipsize="end"
+            android:gravity="center|bottom"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="8" />
+
+        <TextView
+            android:id="@+id/tv_term_gpa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_credit_hours"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="A" />
 
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -35,7 +35,7 @@ class AddEditTermFragment : Fragment(R.layout.fragment_add_edit_term) {
                 viewModel.termName = it.toString()
             }
             tvGpa.isVisible = viewModel.term != null
-            tvGpa.text = "Term Gpa: " + viewModel.term?.gpa
+            tvGpa.text = getString(R.string.term_gpa_details, viewModel.term?.gpa)
             fabAddEdit.setOnClickListener {
                 viewModel.onSaveClick()
             }
@@ -55,7 +55,7 @@ class AddEditTermFragment : Fragment(R.layout.fragment_add_edit_term) {
                     is AddEditTermViewModel.AddEditTermEvent.ShowInvalidInputMessage -> {
                         Snackbar.make(
                             requireView(),
-                            event.msg,
+                            event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
