@@ -44,7 +44,7 @@ class AddEditCourseViewModel @ViewModelInject constructor(
         }
 
     private val addEditCourseEventChannel = Channel<AddEditCourseEvent>()
-    val addEditTaskEvent = addEditCourseEventChannel.receiveAsFlow()
+    val addEditCourseEvent = addEditCourseEventChannel.receiveAsFlow()
 
     fun onSaveClick() {
         if (courseName.isBlank()) {

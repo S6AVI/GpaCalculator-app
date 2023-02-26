@@ -50,6 +50,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation 'androidx.preference:preference:1.1.0'
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
@@ -88,6 +89,8 @@ dependencies {
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
 
     implementation 'io.github.medyo:android-about-page:2.0.0'
+
+
 }
 
 kapt {

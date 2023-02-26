@@ -17,13 +17,14 @@
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_course.xml" value="0.25" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_subject.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_add_edit_term.xml" value="0.22" />
-        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_course.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_course.xml" value="0.1" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_subject.xml" value="0.1" />
-        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_term.xml" value="0.30611372381359553" />
-        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_course.xml" value="0.18" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/fragment_term.xml" value="0.1" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_course.xml" value="0.1" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_subject.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/item_term.xml" value="0.1" />
-        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/settings_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/pref.xml" value="0.16673792218896966" />
+        <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/layout/settings_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_course.xml" value="0.1" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_subject.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Waleed/AndroidStudioProjects/GPA-calc/app/src/main/res/menu/menu_fragment_term.xml" value="0.18" />

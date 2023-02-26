@@ -2,27 +2,40 @@ package com.saleem.gpacalc.ui.term
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.saleem.gpacalc.R
 import com.saleem.gpacalc.data.Course
 import com.saleem.gpacalc.data.CourseDao
 import com.saleem.gpacalc.data.Term
 import com.saleem.gpacalc.data.TermWithCourses
+import com.saleem.gpacalc.data.preferencesmanager.GpaSystem
+import com.saleem.gpacalc.data.preferencesmanager.PreferencesManager
 import com.saleem.gpacalc.ui.ADD_RESULT_OK
 import com.saleem.gpacalc.ui.EDIT_RESULT_OK
 import com.saleem.gpacalc.util.UiText
+import com.saleem.gpacalc.util.calculateGpa
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class TermViewModel @ViewModelInject constructor(
     private val dao: CourseDao,
-    @Assisted private val state: SavedStateHandle
+    @Assisted private val state: SavedStateHandle,
+    private val preferencesManger: PreferencesManager
 ): ViewModel() {
 
+
+
+    val preferencesFlow = preferencesManger.preferencesFlow.asLiveData()
+
+    var gpa: Double = 0.0
+        get()  {
+            if (preferencesFlow.value == GpaSystem.FIVE) {
+                return field * 5/4
+            }
+            return field
+        }
 
     val terms = dao.getTerms().asLiveData()
     val courses = dao.getCourses().asLiveData()
@@ -73,6 +86,10 @@ class TermViewModel @ViewModelInject constructor(
         courses.forEach {c -> dao.insert(c)}
     }
 
+//    fun toCalculateGpa(it: List<Course>): Double {
+//        val gpa = calculateGpa(it)
+//        return gpa * 5/4
+//    }
 
     sealed class TermEvent {
         object NavigateToAddTermScreen: TermEvent()

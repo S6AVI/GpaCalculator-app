@@ -7,6 +7,8 @@ import com.saleem.gpacalc.R
 import com.saleem.gpacalc.data.Course
 import com.saleem.gpacalc.data.CourseDao
 import com.saleem.gpacalc.data.Term
+import com.saleem.gpacalc.data.preferencesmanager.GpaSystem
+import com.saleem.gpacalc.data.preferencesmanager.PreferencesManager
 import com.saleem.gpacalc.ui.ADD_RESULT_OK
 import com.saleem.gpacalc.ui.EDIT_RESULT_OK
 import com.saleem.gpacalc.util.UiText
@@ -17,8 +19,20 @@ import kotlinx.coroutines.launch
 
 class CourseViewModel @ViewModelInject constructor(
     private val courseDao: CourseDao,
-    @Assisted private val state: SavedStateHandle
+    @Assisted private val state: SavedStateHandle,
+    private val preferencesManger: PreferencesManager
 ) : ViewModel() {
+
+
+    val preferencesFlow = preferencesManger.preferencesFlow.asLiveData()
+
+    var gpa: Double = 0.0
+        get()  {
+            if (preferencesFlow.value == GpaSystem.FIVE) {
+                return field * 5/4
+            }
+            return field
+        }
 
     // get the flow of courses and cast it to liveDate to observe it in the fragment
     val term = state.get<Term>("term")

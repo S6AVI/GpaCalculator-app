@@ -2,6 +2,7 @@ package com.saleem.gpacalc.ui.term
 
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -36,7 +37,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
         val binding = FragmentTermBinding.bind(view)
 
-        val termAdapter = TermAdapter(this)
+        val termAdapter = TermAdapter(listener = this, viewModel.preferencesFlow)
 
         binding.apply {
             recyclerView.adapter = termAdapter
@@ -52,10 +53,14 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
         }
 
+        viewModel.preferencesFlow.observe(viewLifecycleOwner) {
+            binding.tvGpa.text = getString(R.string.cumulative_gpa, viewModel.gpa)
+        }
+
         viewModel.courses.observe(viewLifecycleOwner) {
-            val gpa = calculateGpa(it)
-            binding.tvGpa.isVisible = gpa != 0.0
-            binding.tvGpa.text = getString(R.string.cumulative_gpa, gpa)
+            viewModel.gpa = calculateGpa(it)
+            binding.tvGpa.isVisible = viewModel.gpa != 0.0
+            binding.tvGpa.text = getString(R.string.cumulative_gpa, viewModel.gpa)
         }
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
@@ -71,7 +76,7 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val term = termAdapter.currentList[viewHolder.adapterPosition]
+                val term = termAdapter.currentList[viewHolder.bindingAdapterPosition]
                 when (direction) {
                     ItemTouchHelper.LEFT -> viewModel.onTermSwipedLift(term)
                     ItemTouchHelper.RIGHT -> viewModel.onTermSwipedRight(term)
@@ -133,7 +138,11 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
 
                     TermViewModel.TermEvent.NavigateToAddTermScreen -> {
                         val action =
-                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(label = getString(R.string.add_term))
+                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(
+                                label = getString(
+                                    R.string.add_term
+                                )
+                            )
                         findNavController().navigate(action)
                     }
                     is TermViewModel.TermEvent.ShowTermSavedConfirmationMessage -> {
@@ -164,8 +173,11 @@ class TermFragment : Fragment(R.layout.fragment_term), TermAdapter.OnItemClickLi
                     }
                     is TermViewModel.TermEvent.NavigateToEditTermScreen -> {
                         val action =
-                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(event.term, label = getString(
-                                                            R.string.edit_term))
+                            TermFragmentDirections.actionTermFragmentToAddEditTermFragment(
+                                event.term, label = getString(
+                                    R.string.edit_term
+                                )
+                            )
                         findNavController().navigate(action)
                     }
                 }.exhaustive

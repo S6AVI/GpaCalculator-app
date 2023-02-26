@@ -1,15 +1,22 @@
 package com.saleem.gpacalc.ui.term
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.saleem.gpacalc.data.Term
+import com.saleem.gpacalc.data.preferencesmanager.GpaSystem
 import com.saleem.gpacalc.databinding.ItemTermBinding
 
-class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, TermAdapter.TermViewHolder>(DiffCallback()) {
+class TermAdapter(
+    private val listener: OnItemClickListener,
+    private val preferencesFlow: LiveData<GpaSystem>
+) : ListAdapter<Term, TermAdapter.TermViewHolder>(DiffCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TermViewHolder {
         val binding = ItemTermBinding.inflate(
@@ -17,6 +24,9 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
             parent,
             false
         )
+
+
+
         return TermViewHolder(binding)
     }
 
@@ -25,7 +35,8 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
         holder.bind(currentItem)
     }
 
-    inner class TermViewHolder(val binding: ItemTermBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class TermViewHolder(val binding: ItemTermBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.apply {
@@ -43,8 +54,15 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
             binding.apply {
                 tvName.text = term.name
                 tvTermGpa.isVisible = term.gpa != 0.0
-                tvTermGpa.text = term.gpa.toString()
+                if (preferencesFlow.value == GpaSystem.FIVE) {
+                    tvTermGpa.text = term.gpa_5.toString()
+
+                } else {
+                    tvTermGpa.text = term.gpa.toString()
+                }
+
             }
+
         }
     }
 
@@ -52,7 +70,7 @@ class TermAdapter(private val listener: OnItemClickListener): ListAdapter<Term, 
         fun onItemClick(term: Term)
     }
 
-    class DiffCallback: DiffUtil.ItemCallback<Term>()  {
+    class DiffCallback : DiffUtil.ItemCallback<Term>() {
         override fun areItemsTheSame(oldItem: Term, newItem: Term): Boolean =
             oldItem.termId == newItem.termId
 

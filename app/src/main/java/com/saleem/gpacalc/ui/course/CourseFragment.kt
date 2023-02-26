@@ -55,13 +55,17 @@ class CourseFragment : Fragment(R.layout.fragment_course), CourseAdapter.OnItemC
         }
 
 
+        viewModel.preferencesFlow.observe(viewLifecycleOwner) {
+            binding.tvGpa.text = getString(R.string.term_gpa, viewModel.gpa)
+        }
 
         // observe changes in the list and send it to the adapter
         viewModel.courses.observe(viewLifecycleOwner) {
             courseAdapter.submitList(it)
             val termGpa = calculateGpa(it)
-            binding.tvGpa.isVisible = termGpa != 0.0
-            binding.tvGpa.text = getString(R.string.term_gpa, termGpa)
+            viewModel.gpa = termGpa
+            binding.tvGpa.isVisible = viewModel.gpa != 0.0
+            binding.tvGpa.text = getString(R.string.term_gpa, viewModel.gpa)
             viewModel.updateTermGpa(termGpa)
 
         }

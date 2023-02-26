@@ -15,6 +15,7 @@ import com.saleem.gpacalc.R
 import com.saleem.gpacalc.databinding.FragmentAddEditCourseBinding
 
 import com.saleem.gpacalc.util.exhaustive
+import com.saleem.gpacalc.util.hours
 import com.saleem.gpacalc.util.possibleGrades
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -61,7 +62,7 @@ class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.addEditTaskEvent.collect { event ->
+            viewModel.addEditCourseEvent.collect { event ->
                 when (event) {
                     is AddEditCourseViewModel.AddEditCourseEvent.NavigateBackWithResult -> {
 
@@ -87,11 +88,9 @@ class AddEditCourseFragment : Fragment(R.layout.fragment_add_edit_course) {
 
     override fun onResume() {
         super.onResume()
-        val hours = resources.getStringArray(R.array.credit_hours)
         val hoursAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, hours)
         binding.acTvHours.setAdapter(hoursAdapter)
 
-        //val grades = resources.getStringArray(R.array.grade_letters)
         val gradesAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, possibleGrades)
         binding.acTvGrade.setAdapter(gradesAdapter)
     }

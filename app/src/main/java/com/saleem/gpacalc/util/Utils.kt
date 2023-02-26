@@ -7,6 +7,7 @@ val <T> T.exhaustive: T
     get() = this
 
 val possibleGrades = listOf<String>("A", "B+", "B", "C+", "C", "D", "F")
+val hours = (1..8).toList()
 
 fun calculateGpa(courses: List<Course>): Double {
     var sum = 0.0
